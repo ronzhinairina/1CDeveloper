@@ -3,21 +3,22 @@ from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse('<h1>main</h1>')
+    return render(request, 'dev1C/index.html')
 
 
 def demand(request):
-    return HttpResponse('<h1>demand</h1>')
+    return render(request, 'dev1C/demand.html')
 
 
 def areas(request):
-    return HttpResponse('<h1>areas</h1>')
+    return render(request, 'dev1C/areas.html')
 
 
 def skills(request):
-    return HttpResponse('<h1>skills</h1>')
+    return render(request, 'dev1C/skills.html')
 
 
 def vacancies(request):
-    return HttpResponse('<h1>vacancies</h1>')
+    return render(request, 'dev1C/vacancies.html')
+
 # Create your views here.
