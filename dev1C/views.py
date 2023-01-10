@@ -1,9 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import *
 
 
 def index(request):
-    return render(request, 'dev1C/index.html')
+    blocks = Block.objects.filter(page='home')
+    context = {'blocks': blocks}
+    return render(request, 'dev1C/index.html', context=context)
 
 
 def demand(request):
