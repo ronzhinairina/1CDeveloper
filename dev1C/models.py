@@ -17,7 +17,7 @@ PAGES = (
 
 class Content(models.Model):
     title = models.CharField(max_length=63, blank=True)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(upload_to='images/', blank=True)
     content = models.TextField(blank=True)
     style = models.TextField(blank=True)
     type = models.CharField(max_length=25, choices=TYPES)
@@ -25,6 +25,10 @@ class Content(models.Model):
 
     def __str__(self):
         return f'{self.block.title}. {self.type}'
+
+    class Meta:
+        verbose_name = 'Содержание блока'
+        verbose_name_plural = "Содержания блока"
 
 
 class Block(models.Model):
@@ -34,6 +38,10 @@ class Block(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Блок'
+        verbose_name_plural = "Блоки"
 
 
 # Create your models here.

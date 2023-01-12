@@ -1,28 +1,81 @@
+{% load static %}
+{% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'dev1C/css/style.css' %}">
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
 <nav>
     <ul class="nav-list">
-        <li class="nav-item"><a href="{% url 'home' %}">Главная</a></li>
-        <li class="nav-item"><a href="{% url 'demand' %}">Востребованность</a></li>
-        <li class="nav-item"><a href="{% url 'areas' %}">География</a></li>
-        <li class="nav-item"><a href="{% url 'skills' %}">Навыки</a></li>
-        <li class="nav-item"><a href="{% url 'vacancies' %}">Последние вакансии</a></li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}"><img class="nav-icon" src="{% static 'dev1C/image/Home.png' %}"></a>
+            <a class="nav-link" href="{% url 'home' %}">Главная</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'demand' %}"><img class="nav-icon" src="{% static 'dev1C/image/Demand.png' %}"></a>
+            <a class="nav-link" href="{% url 'demand' %}">Востребованность</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'areas' %}"><img class="nav-icon" src="{% static 'dev1C/image/Areas.png' %}"></a>
+            <a class="nav-link" href="{% url 'areas' %}">География</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'skills' %}"><img class="nav-icon" src="{% static 'dev1C/image/Skills.png' %}"></a>
+            <a class="nav-link" href="{% url 'skills' %}">Навыки</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'vacancies' %}"><img class="nav-icon" src="{% static 'dev1C/image/Vacancies.png' %}"></a>
+            <a class="nav-link" href="{% url 'vacancies' %}">Последние вакансии</a>
+        </li>
     </ul>
 </nav>
+    <div class="logo">
+    <img src="{% static 'dev1C/image/Logo.png' %}">
+        </div>
 </header>
 <main>
+{% block title_page %}{% endblock %}
 {% block main %}
-
+    {% for block in blocks %}
+        <section class="section-{{ block.pk }}">
+        <h2>{{ block.title }}</h2>
+        {% get_all_content block.pk as contents %}
+        {% for content in contents %}
+            {% if content.type == 'text' %}
+                <div class="content-{{ content.pk }}">
+                {% get_list content as list %}
+                {% for p in list %}
+                    <p>{{ p }}</p>
+                {% endfor %}
+                </div>
+            {% elif content.type == 'image' %}
+                <img src="{{ content.image.url }}" class="content-{{ content.pk }}">
+            {% elif content.type == 'table' %}
+                {% show_table content %}
+                {% endif %}
+            <style type="text/css">
+            .content-{{ content.pk }} {
+            {{ content.style }}
+            }
+            </style>
+            {% endfor %}
+        <style type="text/css">
+        .section-{{ block.pk }} {
+        {{ block.style }}
+        }
+        </style>
+        </section>
+    {% endfor %}
 {% endblock %}
 </main>
 <footer>
-    Irina
+    <p>Ронжина Ирина Алексеевна АТ-11<p>
+    <p>РИ-210943</p>
 </footer>
 </body>
 </html>

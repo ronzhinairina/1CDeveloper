@@ -1,0 +1,14 @@
+<table class="content-{{ content.pk }}">
+    <tr>
+        {% for head in heads %}
+            <th>{{ head }}</th>
+        {% endfor %}
+    </tr>
+    {% for th in rows %}
+    <tr>
+        {% for td in th %}
+            <td>{{ td }}</td>
+            {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
