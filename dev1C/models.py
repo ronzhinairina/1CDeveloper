@@ -3,7 +3,8 @@ from django.db import models
 TYPES = (
     ('text', 'Текст'),
     ('image', 'Изображения'),
-    ('table', 'Таблица')
+    ('table', 'Таблица'),
+    ('list', 'Список')
 )
 
 PAGES = (
@@ -32,11 +33,14 @@ class Content(models.Model):
 
 
 class Block(models.Model):
-    title = models.CharField(max_length=63)
+    title = models.CharField(max_length=63, blank=True)
+    title_style = models.TextField(blank=True,null= True)
     page = models.CharField(max_length=25, choices=PAGES)
     style = models.TextField(blank=True)
 
     def __str__(self):
+        if self.title == "":
+            return f'{self.page}.Блок'
         return self.title
 
     class Meta:

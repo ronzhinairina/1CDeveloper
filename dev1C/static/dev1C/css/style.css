@@ -1,6 +1,10 @@
 body {
     margin: 0;
     padding: 0;
+    font-size: 14px;
+    font-family: 'Cantarell', sans-serif;
+    font-weight: 500;
+    line-height: 20px;
 }
 
 nav {
@@ -11,11 +15,17 @@ nav {
     position: fixed;
     height: 100vh;
     margin-top: -40px;
+    padding-top: 60px;
 }
+
 .nav-list {
     margin: 0;
     padding: 0;
     /*position: fixed;*/
+}
+
+nav p {
+    margin: 0;
 }
 
 .nav-link {
@@ -25,7 +35,7 @@ nav {
     font-size: 14px;
 }
 
-.nav-item {
+.nav-item a {
     display: flex;
     gap: 10px;
     flex-direction: column;
@@ -34,7 +44,7 @@ nav {
 }
 
 main {
-    margin-left: 200px;
+    margin-left: 168px;
 }
 
 .logo {
@@ -44,6 +54,80 @@ main {
 
 }
 
+h1 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 32px;
+    line-height: 44px;
+    grid-area: title;
+    align-self: start;
+}
+
+h2 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 33px;
+}
+
+.lead {
+    display: grid;
+    grid-template-areas: "title img"
+                            "text img";
+    width: 991px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+section {
+    margin-bottom: 100px;
+}
+
+.lead-img {
+    grid-area: img;
+    width: 439px;
+    margin-left: 80px;
+}
+
+.lead p {
+    grid-area: text;
+}
+
+li:before {
+    content: "‣";
+    color: black;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
+ ul {
+     margin: 0;
+     padding: 0;
+     list-style: none;
+ }
+
+ .nav-item:before {
+     content: "";
+ }
+
+.author {
+    display: flex;
+    justify-content: center;
+    margin-left: 168px;
+    background-color: rgba(255, 247, 191, 1);
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.author p {
+    margin-right: 30px;
+    color: rgba(0, 0, 0, 0.7);
+}
 /*.nav-icon {*/
 /*    margin-bottom: 10px;*/
 /*}*/

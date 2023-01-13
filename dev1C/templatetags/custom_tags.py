@@ -24,3 +24,8 @@ def show_table(table: Content):
     return {'content': table,
             'head': head,
             'rows': rows}
+
+
+@register.simple_tag()
+def get_list(content: Content):
+    return content.content.split('\n')

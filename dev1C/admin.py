@@ -1,6 +1,15 @@
 from django.contrib import admin
 from .models import *
 
-# Register your models here.
+
+class ContentAdminInline(admin.StackedInline):
+    model = Content
+    extra = 1
+
+
+class BlockAdmin(admin.ModelAdmin):
+    inlines = (ContentAdminInline, )
+
+
 admin.site.register(Content)
-admin.site.register(Block)
+admin.site.register(Block, BlockAdmin)

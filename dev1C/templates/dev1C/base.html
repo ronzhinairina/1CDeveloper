@@ -13,24 +13,24 @@
 <nav>
     <ul class="nav-list">
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}"><img class="nav-icon" src="{% static 'dev1C/image/Home.png' %}"></a>
-            <a class="nav-link" href="{% url 'home' %}">Главная</a>
+            <a class="nav-link" href="{% url 'home' %}"><img class="nav-icon" src="{% static 'dev1C/image/Home.png' %}">
+            <p>Главная</p></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'demand' %}"><img class="nav-icon" src="{% static 'dev1C/image/Demand.png' %}"></a>
-            <a class="nav-link" href="{% url 'demand' %}">Востребованность</a>
+            <a class="nav-link" href="{% url 'demand' %}"><img class="nav-icon" src="{% static 'dev1C/image/Demand.png' %}">
+            <p>Востребованность</p></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'areas' %}"><img class="nav-icon" src="{% static 'dev1C/image/Areas.png' %}"></a>
-            <a class="nav-link" href="{% url 'areas' %}">География</a>
+            <a class="nav-link" href="{% url 'areas' %}"><img class="nav-icon" src="{% static 'dev1C/image/Areas.png' %}">
+            <p>География</p></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'skills' %}"><img class="nav-icon" src="{% static 'dev1C/image/Skills.png' %}"></a>
-            <a class="nav-link" href="{% url 'skills' %}">Навыки</a>
+            <a class="nav-link" href="{% url 'skills' %}"><img class="nav-icon" src="{% static 'dev1C/image/Skills.png' %}">
+            <p>Навыки</p></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'vacancies' %}"><img class="nav-icon" src="{% static 'dev1C/image/Vacancies.png' %}"></a>
-            <a class="nav-link" href="{% url 'vacancies' %}">Последние вакансии</a>
+            <a class="nav-link" href="{% url 'vacancies' %}"><img class="nav-icon" src="{% static 'dev1C/image/Vacancies.png' %}">
+            <p>Последние вакансии</p></a>
         </li>
     </ul>
 </nav>
@@ -42,40 +42,62 @@
 {% block title_page %}{% endblock %}
 {% block main %}
     {% for block in blocks %}
-        <section class="section-{{ block.pk }}">
-        <h2>{{ block.title }}</h2>
+        <section>
+        <h2 class="title-{{ block.pk }}">{{ block.title }}</h2>
+        <div class="section-{{ block.pk }}">
         {% get_all_content block.pk as contents %}
         {% for content in contents %}
+            <div class="content-{{ content.pk }}">
+            <p>{{ content.title }}</p>
             {% if content.type == 'text' %}
-                <div class="content-{{ content.pk }}">
                 {% get_list content as list %}
                 {% for p in list %}
                     <p>{{ p }}</p>
                 {% endfor %}
-                </div>
+
             {% elif content.type == 'image' %}
-                <img src="{{ content.image.url }}" class="content-{{ content.pk }}">
+                <img src="{{ content.image.url }}">
             {% elif content.type == 'table' %}
                 {% show_table content %}
+            {% elif 'list' %}
+                {% get_list content as list %}
+                <ul class="content-{{ content.pk }}">
+                    {% for li in list %}
+                        <li>{{ li }}</li>
+                {% endfor %}
+                </ul>
                 {% endif %}
             <style type="text/css">
             .content-{{ content.pk }} {
             {{ content.style }}
             }
+
+            .content-{{ content.pk }} p {
+                margin-bottom: 20px;
+                margin-top: 0;
+            }
             </style>
+            </div>
             {% endfor %}
         <style type="text/css">
         .section-{{ block.pk }} {
-        {{ block.style }}
+        {{ block.style|safe }}
+        }
+
+        .title-{{ block.pk }} {
+        {{ block.title_style|safe }}
         }
         </style>
+        </div>
         </section>
     {% endfor %}
 {% endblock %}
 </main>
 <footer>
+    <div class="author">
     <p>Ронжина Ирина Алексеевна АТ-11<p>
     <p>РИ-210943</p>
+    </div>
 </footer>
 </body>
 </html>
