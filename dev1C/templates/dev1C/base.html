@@ -48,7 +48,7 @@
         {% get_all_content block.pk as contents %}
         {% for content in contents %}
             <div class="content-{{ content.pk }}">
-            <p>{{ content.title }}</p>
+            <p class="content-{{ content.pk }}-title">{{ content.title }}</p>
             {% if content.type == 'text' %}
                 {% get_list content as list %}
                 {% for p in list %}
@@ -56,7 +56,7 @@
                 {% endfor %}
 
             {% elif content.type == 'image' %}
-                <img src="{{ content.image.url }}">
+                <img src="{{ content.image.url }}" class="content-{{ content.pk }}">
             {% elif content.type == 'table' %}
                 {% show_table content %}
             {% elif 'list' %}
@@ -71,7 +71,9 @@
             .content-{{ content.pk }} {
             {{ content.style }}
             }
-
+            .content-{{ content.pk }}-title {
+            {{ content.title_style }}
+            }
             .content-{{ content.pk }} p {
                 margin-bottom: 20px;
                 margin-top: 0;

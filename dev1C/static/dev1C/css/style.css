@@ -128,6 +128,33 @@ li:last-child {
     margin-right: 30px;
     color: rgba(0, 0, 0, 0.7);
 }
+
+.page-lead {
+    font-size: 16px;
+    text-align: center;
+    width: 991px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+th {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.page-lead h1 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 32px;
+    line-height: 44px;
+    font-weight: 400;
+}
 /*.nav-icon {*/
 /*    margin-bottom: 10px;*/
 /*}*/

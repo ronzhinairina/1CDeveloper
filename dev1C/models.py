@@ -18,6 +18,7 @@ PAGES = (
 
 class Content(models.Model):
     title = models.CharField(max_length=63, blank=True)
+    title_style = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='images/', blank=True)
     content = models.TextField(blank=True)
     style = models.TextField(blank=True)

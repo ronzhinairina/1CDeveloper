@@ -1,13 +1,13 @@
 <table class="content-{{ content.pk }}">
     <tr>
         {% for head in heads %}
-            <th>{{ head }}</th>
+            <th align="center">{{ head }}</th>
         {% endfor %}
     </tr>
     {% for th in rows %}
     <tr>
         {% for td in th %}
-            <td>{{ td }}</td>
+            <td align="center">{{ td }}</td>
             {% endfor %}
     </tr>
     {% endfor %}

@@ -18,12 +18,22 @@ def get_list(text: Content):
 @register.inclusion_tag('dev1C/table.html')
 def show_table(table: Content):
     data = table.content.split('\n')
-    data = [row.split(',') for row in data]
-    head = data[0]
+    head = data[0].split(',')
     rows = data[1:]
+    values = list()
+    for row in rows:
+        if '[' in row and ']' in row:
+            new_row = list()
+            index = row.index('[')
+            new_row.append(row[:index].split(',')[0])
+            array = row[index:].replace('[', '').replace(']', '').replace("'", '')
+            new_row.append(array)
+            values.append(new_row)
+        else:
+            values.append(row.split(','))
     return {'content': table,
-            'head': head,
-            'rows': rows}
+            'heads': head,
+            'rows': values}
 
 
 @register.simple_tag()

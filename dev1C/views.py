@@ -10,15 +10,21 @@ def index(request):
 
 
 def demand(request):
-    return render(request, 'dev1C/demand.html')
+    blocks = Block.objects.filter(page='demand')
+    context = {'blocks': blocks}
+    return render(request, 'dev1C/demand.html', context=context)
 
 
 def areas(request):
-    return render(request, 'dev1C/areas.html')
+    blocks = Block.objects.filter(page='areas')
+    context = {'blocks': blocks}
+    return render(request, 'dev1C/areas.html', context=context)
 
 
 def skills(request):
-    return render(request, 'dev1C/skills.html')
+    blocks = Block.objects.filter(page='skills')
+    context = {'blocks': blocks}
+    return render(request, 'dev1C/skills.html', context=context)
 
 
 def vacancies(request):
