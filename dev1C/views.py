@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
+from .data_science import get_hh_dev1C
 
 
 def index(request):
@@ -28,6 +29,8 @@ def skills(request):
 
 
 def vacancies(request):
-    return render(request, 'dev1C/vacancies.html')
+    vacancies = get_hh_dev1C.get_hh_dev1C()
+    context = {'vacancies': vacancies}
+    return render(request, 'dev1C/vacancies.html', context=context)
 
 # Create your views here.
